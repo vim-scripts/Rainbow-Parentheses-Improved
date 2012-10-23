@@ -1,3 +1,28 @@
-This script has been renamed to Rainbow Parentheses Improved （&#2.
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4176
 
-http://github.com/vim-scripts/Rainbow-Parentheses-Improved-and2
+More details in Github: http://github.com/luochen1990/rainbow
+
+(这里有中文版: http://github.com/luochen1990/rainbow/blob/master/README_zh.md)
+
+Any problem, create a new issue here: http://github.com/luochen1990/rainbow/issues
+
+-------------------------------------------------------------------------------------------------------- 
+
+### What is improved ? 
+
+- smoother and faster. (linear time complexity) 
+- the code is shorter and easier to be read now. (shorter than 100 lines) 
+- no limit of parentheses levels. 
+- separately edit guifgs and ctermfgs (the colors used to highlight) 
+- now you can design your own parentheses  such as 'begin' and 'end' . (you can also design  what kinds of parentheses to use for different filetypes. ) 
+- you can also configure seprately for different type of files. 
+- now you can even decide to let some operators (like + - * / , ==) hilighted with the parentheses together.
+- now json style configuration used, more understandable and more readable, easily for advanced configuration.
+- the last , but not the least , the chinese statement is added as you see. 
+
+### scripts I referenced: 
+- http://www.vim.org/scripts/script.php?script_id=1561
+- http://www.vim.org/scripts/script.php?script_id=3772
+
+**Rate this script if you like it, and i'll appreciate it and improve this plugin for you because of your support !  just choose `Life Changing` and click `rate` :) **
+
