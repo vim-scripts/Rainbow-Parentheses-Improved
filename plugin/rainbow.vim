@@ -1,8 +1,8 @@
 "==============================================================================
 "Script Title: rainbow parentheses improved
-"Script Version: 3.1.1
+"Script Version: 3.1.3
 "Author: luochen1990
-"Last Edited: 2014 Jan 3
+"Last Edited: 2014 April 30
 "Simple Configuration:
 "	first, put "rainbow.vim"(this file) to dir vimfiles/plugin or vim73/plugin
 "	second, add the follow sentences to your .vimrc or _vimrc :
@@ -17,7 +17,7 @@
 "	:RainbowToggle		--you can use it to toggle this plugin.
 "==============================================================================
 
-if exists('s:loaded') || !((exists('g:rainbow_active') && g:rainbow_active) || exists('g:rainbow_conf'))
+if exists('s:loaded') || !(exists('g:rainbow_active') || exists('g:rainbow_conf'))
 	finish
 endif
 let s:loaded = 1
@@ -40,7 +40,7 @@ let s:rainbow_conf = {
 \			'parentheses': [['(',')'], ['\[','\]'], ['{','}'], ['<\a[^>]*[^/]>\|<\a>','</[^>]*>']],
 \		},
 \		'vim': {
-\			'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
+\			'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_elseif\|else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
 \		},
 \		'tex': {
 \			'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
@@ -116,7 +116,11 @@ func rainbow#toggle()
 	if exists('b:rainbow_loaded')
 		call rainbow#clear()
 	else
-		call rainbow#load()
+		if exists('b:rainbow_conf')
+			call rainbow#load()
+		else
+			call rainbow#hook()
+		endif
 	endif
 endfunc
 
@@ -130,5 +134,9 @@ func rainbow#hook()
 	endif
 endfunc
 
-auto syntax * call rainbow#hook()
 command! RainbowToggle call rainbow#toggle()
+
+if (exists('g:rainbow_active') && g:rainbow_active)
+	auto syntax * call rainbow#hook()
+	auto colorscheme * call rainbow#show()
+endif
